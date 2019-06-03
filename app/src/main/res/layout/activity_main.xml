@@ -11,10 +11,9 @@
             android:layout_width="324dp"
             android:layout_height="0dp"
             android:inputType="number"
-            android:text="@string/txt_0"
             android:hint="@string/txt_hint"
             android:ems="10"
-            tools:layout_editor_absoluteY="16dp" tools:layout_editor_absoluteX="19dp" android:id="@+id/editText"
+            tools:layout_editor_absoluteY="16dp" tools:layout_editor_absoluteX="18dp" android:id="@+id/editText"
             tools:ignore="MissingConstraints"/>
     <Button
             android:text="@string/btn_AC"
