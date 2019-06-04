@@ -12,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
             buttonAdd, buttonSub, buttonMult, buttonDiv, buttonAc, buttonEq;
     EditText editText;
 
-    float valueOne, valueTwo;
+    double valueOne, valueTwo;
 
     boolean add, sub, mult, div;
 
@@ -113,14 +113,27 @@ public class MainActivity extends AppCompatActivity {
         buttonAc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editText.setText(editText.getText() + "");
+                editText.setText("");
+            }
+        });
+
+        buttonDot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (editText.getText().toString().equals("")){
+                    editText.setText("0.");
+                } else if(editText.getText().toString().contains(".")){
+                editText.setText(editText.getText() +"");
+            } else{
+                    editText.setText(editText.getText() +".");
+                }
             }
         });
 
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueOne = Float.parseFloat(editText.getText() + "");
+                valueOne = Double.parseDouble(editText.getText() + "");
                 add = true;
                 editText.setText(null);
             }
@@ -132,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                 if (editText == null){
                     editText.setText("");
                 } else {
-                    valueOne = Float.parseFloat(editText.getText()+"");
+                    valueOne = Double.parseDouble(editText.getText()+"");
                     sub = true;
                     editText.setText(null);
                 }
@@ -144,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
                 if (editText == null){
                     editText.setText("");
                 } else {
-                    valueOne = Float.parseFloat(editText.getText() + "");
+                    valueOne = Double.parseDouble(editText.getText() + "");
                     mult = true;
                     editText.setText(null);
                 }
@@ -154,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
         buttonDiv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    valueOne = Float.parseFloat(editText.getText() + "");
+                    valueOne = Double.parseDouble(editText.getText() + "");
                     div = true;
                     editText.setText(null);
             }
@@ -163,21 +176,45 @@ public class MainActivity extends AppCompatActivity {
         buttonEq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                valueTwo = Float.parseFloat(editText.getText() + "");
+                valueTwo = Double.parseDouble(editText.getText() + "");
                 if (add == true) {
-                    editText.setText(valueOne + valueTwo + "");
+                    double result = valueOne + valueTwo;
+                    if (result%1 == 0) {
+                    editText.setText(String.format("%s",(long)result));
+                }
+                else {
+                        editText.setText(String.format("%s",result));
+                    }
                     add = false;
                 }
                 if (sub == true) {
-                    editText.setText(valueOne - valueTwo + "");
+                    double result = valueOne - valueTwo;
+                    if (result%1 == 0) {
+                    editText.setText(String.format("%s",(long)result));
+                }
+                else {
+                        editText.setText(String.format("%s",result));
+                    }
                     sub = false;
                 }
                 if (mult == true) {
-                    editText.setText(valueOne * valueTwo + "");
+                    double result = valueOne * valueTwo;
+                    if (result%1 == 0) {
+                        editText.setText(String.format("%s",(long)result));
+                    }
+                    else {
+                        editText.setText(String.format("%s",result));
+                    }
                     mult = false;
                 }
                 if (div == true) {
-                    editText.setText(valueOne / valueTwo + "");
+                    double result = valueOne / valueTwo;
+                    if (result%1 == 0) {
+                        editText.setText(String.format("%s",(long)result));
+                    }
+                    else {
+                        editText.setText(String.format("%s",result));
+                    }
                     div = false;
                 }
             }
